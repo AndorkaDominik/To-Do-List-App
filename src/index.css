@@ -135,9 +135,9 @@ li {
     font-size: 1.2rem;
   }
 
-    .delete-button,
-    .move-button {
-      margin-left: 3px;
-          font-size: 1.2rem;
-    }
+  .delete-button,
+  .move-button {
+    margin-left: 3px;
+    font-size: 1.2rem;
+  }
 }
