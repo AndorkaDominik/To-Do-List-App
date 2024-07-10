@@ -2,6 +2,8 @@
 
 A simple and interactive To-Do List application built with React. This app allows you to add, delete, and rearrange tasks to keep track of your daily activities.
 
+![To-Do-List App Screenshot](./.github/screen.png)
+
 ## Features
 
 - **Add Tasks**: Enter a task in the input field and click 'Add' to include it in your list.
