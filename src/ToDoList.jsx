@@ -1,12 +1,38 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 function ToDoList() {
 
-    const [tasks, setTasks] = useState(["Eat Breakfast", "Take a shower", "Walk the dog"]);
+    const [tasks, setTasks] = useState([]);
     const [newTask, setNewTask] = useState("");
+    const [isConsentGiven, setIsConsentGiven] = useState(false);
+
+    useEffect(() => {
+        const consent = localStorage.getItem('consent');
+        if (consent === 'true') {
+            const savedTasks = localStorage.getItem('tasks');
+            if (savedTasks) {
+                setTasks(JSON.parse(savedTasks));
+            } else {
+                setTasks(["Eat Breakfast", "Take a shower", "Walk the dog"]);
+            }
+            setIsConsentGiven(true);
+        }
+    }, []);
+
+    useEffect(() => {
+        if (isConsentGiven) {
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+        }
+    }, [tasks, isConsentGiven]);
 
     function handleInputChange(event) {
         setNewTask(event.target.value)
+    }
+
+    function handleKeyPress(event) {
+        if (event.key === 'Enter') {
+            addTask();
+        }
     }
 
     function addTask(){
@@ -41,8 +67,21 @@ function ToDoList() {
         }
     }
 
+     function handleConsent() {
+        localStorage.setItem('consent', 'true');
+        setIsConsentGiven(true);
+    }
+
     return (
         <>
+             {!isConsentGiven && (
+                <div className="consent-notification">
+                    <h1>To-Do-List</h1>
+                    <p>We use your local storage to save your tasks. Please accept to continue.</p>
+                    <button onClick={handleConsent}>Accept</button>
+                </div>
+            )}
+            {isConsentGiven && (
             <div className="to-do-list">
                 <h1>To-Do-List</h1>
                 <h4>Andorka Dominik</h4>
@@ -52,6 +91,7 @@ function ToDoList() {
                         placeholder="Enter a task..."
                         value={newTask}
                         onChange={handleInputChange}
+                        onKeyDown={handleKeyPress}
                         />
                     <button 
                         className="add-button"
@@ -83,6 +123,7 @@ function ToDoList() {
                     )}
                 </ol>
             </div>
+            )}
         </>
     );
 }

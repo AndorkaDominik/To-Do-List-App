@@ -87,7 +87,41 @@ li {
   margin-left: 10px;
 }
 
+.consent-notification p {
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+.consent-notification button {
+  background-color: hsl(125, 47%, 54%);
+  font-size: 1.7rem;
+  font-weight: bold;
+  padding: 10px 20px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+}
+
+.consent-notification button:hover {
+  background-color: hsl(125, 47%, 44%);
+}
+
 @media screen and (max-width: 500px) {
+
+  .consent-notification {
+      padding: 20px;
+    }
+  
+    .consent-notification p {
+      font-size: 1.5rem;
+    }
+  
+    .consent-notification button {
+      font-size: 1.5rem;
+      padding: 8px 16px;
+    }
 
   h1{
     font-size: 3rem;
@@ -116,6 +150,19 @@ li {
 
 @media screen and (max-width: 350px) {
 
+  .consent-notification {
+      padding: 10px;
+    }
+  
+    .consent-notification p {
+      font-size: 1.25rem;
+    }
+  
+    .consent-notification button {
+      font-size: 1.2rem;
+      padding: 6px 12px;
+    }
+
   span{
     font-size: 1.75rem;
   }  
@@ -139,5 +186,19 @@ li {
   .move-button {
     margin-left: 3px;
     font-size: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 250px) {
+  .consent-notification {
+    margin-top: 40px;
+  }
+
+  .consent-notification p {
+    font-size: 1rem;
+  }
+
+  .consent-notification h1 {
+    font-size: 2rem;
   }
 }
